@@ -1,11 +1,26 @@
 {
     "name": "craigzearfoss/bullets",
     "description": "Add bullet points to a model",
+    "keywords": [
+        "php",
+        "craigzearfoss",
+        "laravel",
+        "tags"
+    ],
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Craig Zearfoss",
-            "email": "craigzearfoss@yahoo.com"
+            "email": "craigzearfoss@yahoo.com",
+            "homepage": "https://craigzearfoss.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/database": "5.1.*|5.2.*"
+    },
+    "autoload": {
+        "psr-4": { "Craigzearfoss\\Bullets\\": "src/" }
+    },
+    "minimum-stability": "stable"
 }

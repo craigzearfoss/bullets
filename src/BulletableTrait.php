@@ -4,7 +4,7 @@
  * Part of the Bullets package.
  *
  * @package    Bullets
- * @version    0.0.0
+ * @version    0.0.6
  * @author     Craig Zearfoss
  * @license    MIT License
  * @copyright  (c) 2011-2016, Craig Zearfoss
@@ -173,7 +173,6 @@ trait BulletableTrait
     public function addBullet($comment)
     {
         $bullet = $this->createBulletsModel()->firstOrNew([
-            'sequence'  => 999999,
             'namespace' => $this->getBulletEntityClassName(),
         ]);
 

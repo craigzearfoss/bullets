@@ -4,7 +4,7 @@
  * Part of the Bullets package.
  *
  * @package    Bullets
- * @version    0.0.0
+ * @version    0.0.6
  * @author     Craig Zearfoss
  * @license    MIT License
  * @copyright  (c) 2011-2016, Craig Zearfoss
@@ -33,7 +33,6 @@ class IlluminateBullet extends Model
      */
     protected $fillable = [
         'comment',
-        'sequence',
         'count',
         'namespace',
     ];
@@ -87,18 +86,6 @@ class IlluminateBullet extends Model
     public function scopeComment(Builder $query, $comment)
     {
         return $query->whereName($comment);
-    }
-
-    /**
-     * Finds a bullet by its sequence.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string  $sequence
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeSequence(Builder $query, $sequence)
-    {
-        return $query->whereName($sequence);
     }
 
     /**

@@ -21,5 +21,6 @@
     },
     "autoload": {
         "psr-4": { "Craigzearfoss\\Bullets\\": "src/" }
-    }
+    },
+    "minimum-stability": "dev"
 }

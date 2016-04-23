@@ -7,7 +7,7 @@
         "laravel",
         "tags"
     ],
-    "license": "BSD-3-Clause",
+    "license": "MIT License",
     "authors": [
         {
             "name": "Craig Zearfoss",

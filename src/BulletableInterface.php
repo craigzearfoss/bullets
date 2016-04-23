@@ -27,10 +27,10 @@ interface BulletableInterface
     /**
      * Sets the bullets delimiter.
      *
-     * @param  string  $delimiter
+     * @param  string  $bulletDelimiter
      * @return $this
      */
-    public static function setBulletsDelimiter($delimiter);
+    public static function setBulletsDelimiter($bulletDelimiter);
 
     /**
      * Returns the Eloquent bullets model comment.

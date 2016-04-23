@@ -22,7 +22,7 @@ trait BulletableTrait
      *
      * @var string
      */
-    protected static $delimiter = ',';
+    protected static $bulletDelimiter = ',';
 
     /**
      * The Eloquent bullets model name.
@@ -43,15 +43,15 @@ trait BulletableTrait
      */
     public static function getBulletsDelimiter()
     {
-        return static::$delimiter;
+        return static::$bulletDelimiter;
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function setBulletsDelimiter($delimiter)
+    public static function setBulletsDelimiter($bulletDelimiter)
     {
-        static::$delimiter = $delimiter;
+        static::$bulletDelimiter = $bulletDelimiter;
 
         return get_called_class();
     }
@@ -232,10 +232,10 @@ trait BulletableTrait
         }
 
         if (is_string($bullets)) {
-            $delimiter = preg_quote($this->getBulletsDelimiter(), '#');
+            $bulletDelimiter = preg_quote($this->getBulletsDelimiter(), '#');
 
             $bullets = array_map('trim',
-                preg_split("#[{$delimiter}]#", $bullets, null, PREG_SPLIT_NO_EMPTY)
+                preg_split("#[{$bulletDelimiter}]#", $bullets, null, PREG_SPLIT_NO_EMPTY)
             );
         }
 

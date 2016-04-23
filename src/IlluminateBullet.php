@@ -16,7 +16,7 @@ namespace Craigzearfoss\Bullets;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-class IlluminateBullets extends Model
+class IlluminateBullet extends Model
 {
     /**
      * {@inheritdoc}

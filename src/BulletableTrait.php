@@ -32,13 +32,6 @@ trait BulletableTrait
     protected static $bulletsModel = 'Craigzearfoss\Bullets\IlluminateBullet';
 
     /**
-     * The Slug generator method.
-     *
-     * @var string
-     */
-    protected static $slugGenerator = 'Illuminate\Support\Str::slug';
-
-    /**
      * {@inheritdoc}
      */
     public static function getBulletsDelimiter()
@@ -248,17 +241,6 @@ trait BulletableTrait
     public static function createBulletsModel()
     {
         return new static::$bulletsModel;
-    }
-
-    /**
-     * Generate the bullet slug using the given comment.
-     *
-     * @param  string  $comment
-     * @return string
-     */
-    protected function generateBulletSlug($comment)
-    {
-        return call_user_func(static::$slugGenerator, $comment);
     }
 
     /**

@@ -1,0 +1,11 @@
+{
+    "name": "craigzearfoss/bullets",
+    "description": "Add bullet points to a model",
+    "authors": [
+        {
+            "name": "Craig Zearfoss",
+            "email": "craigzearfoss@yahoo.com"
+        }
+    ],
+    "require": {}
+}

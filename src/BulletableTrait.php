@@ -34,7 +34,7 @@ trait BulletableTrait
     /**
      * {@inheritdoc}
      */
-    public static function getBulletsDelimiter()
+    public static function getBulletDelimiter()
     {
         return static::$bulletDelimiter;
     }
@@ -42,7 +42,7 @@ trait BulletableTrait
     /**
      * {@inheritdoc}
      */
-    public static function setBulletsDelimiter($bulletDelimiter)
+    public static function setBulletDelimiter($bulletDelimiter)
     {
         static::$bulletDelimiter = $bulletDelimiter;
 
@@ -225,7 +225,7 @@ trait BulletableTrait
         }
 
         if (is_string($bullets)) {
-            $bulletDelimiter = preg_quote($this->getBulletsDelimiter(), '#');
+            $bulletDelimiter = preg_quote($this->getBulletDelimiter(), '#');
 
             $bullets = array_map('trim',
                 preg_split("#[{$bulletDelimiter}]#", $bullets, null, PREG_SPLIT_NO_EMPTY)

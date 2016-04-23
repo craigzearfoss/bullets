@@ -18,19 +18,19 @@ use Illuminate\Database\Eloquent\Builder;
 interface BulletableInterface
 {
     /**
-     * Returns the bullets delimiter.
+     * Returns the bullet delimiter.
      *
      * @return string
      */
-    public static function getBulletsDelimiter();
+    public static function getBulletDelimiter();
 
     /**
-     * Sets the bullets delimiter.
+     * Sets the bullet delimiter.
      *
      * @param  string  $bulletDelimiter
      * @return $this
      */
-    public static function setBulletsDelimiter($bulletDelimiter);
+    public static function setBulletDelimiter($bulletDelimiter);
 
     /**
      * Returns the Eloquent bullets model comment.

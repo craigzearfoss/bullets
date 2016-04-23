@@ -88,7 +88,7 @@ trait BulletableTrait
         $instance = new static;
 
         return $instance->createBulletsModel()->whereNamespace(
-            $instance->getEntityClassName()
+            $instance->getBulletEntityClassName()
         );
     }
 
@@ -181,7 +181,7 @@ trait BulletableTrait
     {
         $bullet = $this->createBulletsModel()->firstOrNew([
             'sequence'  => 999999,
-            'namespace' => $this->getEntityClassName(),
+            'namespace' => $this->getBulletEntityClassName(),
         ]);
 
         if (! $bullet->exists) {
@@ -202,7 +202,7 @@ trait BulletableTrait
      */
     public function removeBullet($name)
     {
-        $namespace = $this->getEntityClassName();
+        $namespace = $this->getBulletEntityClassName();
 
         $bullet = $this
             ->createBulletsModel()
@@ -266,7 +266,7 @@ trait BulletableTrait
      *
      * @return string
      */
-    protected function getEntityClassName()
+    protected function getBulletEntityClassName()
     {
         if (isset(static::$entityNamespace)) {
             return static::$entityNamespace;

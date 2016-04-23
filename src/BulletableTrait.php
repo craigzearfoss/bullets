@@ -18,7 +18,7 @@
  * @link       http://craigzearfoss.com
  */
 
-namespace Cragzearfoss\Bullets;
+namespace Craigzearfoss\Bullets;
 
 use Illuminate\Database\Eloquent\Builder;
 

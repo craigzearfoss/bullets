@@ -18,7 +18,7 @@
  * @link       http://craigzearfoss.com
  */
 
-namespace Cartalyst\Bullets;
+namespace Craigzearfoss\Bullets;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;

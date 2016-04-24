@@ -4,7 +4,7 @@
  * Part of the Bullets package.
  *
  * @package    Bullets
- * @version    0.0.8
+ * @version    0.0.10
  * @author     Craig Zearfoss
  * @license    MIT License
  * @copyright  (c) 2011-2016, Craig Zearfoss
@@ -45,7 +45,10 @@ trait BulletableTrait
      */
     public function bullets()
     {
-        return $this->morphToMany(static::$bulletsModel, 'bulletable', 'bulletable_id', 'bullet_id');
+        $instance = new static;
+        return $instance->createBulletsModel()
+            ->whereNamespace($instance->getBulletEntityClassName())
+            ->where('bulletable_id', $this->id);
     }
 
     /**
@@ -55,37 +58,8 @@ trait BulletableTrait
     {
         $instance = new static;
 
-        return $instance->createBulletsModel()->whereNamespace(
-            $instance->getBulletEntityClassName()
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function scopeWhereBullet(Builder $query, $bullets, $type = 'comment')
-    {
-        $bullets = (new static)->prepareBullets($bullets);
-
-        foreach ($bullets as $bullet) {
-            $query->whereHas('bullets', function ($query) use ($type, $bullet) {
-                $query->where($type, $bullet);
-            });
-        }
-
-        return $query;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function scopeWithBullet(Builder $query, $bullets, $type = 'comment')
-    {
-        $bullets = (new static)->prepareBullets($bullets);
-
-        return $query->whereHas('bullets', function ($query) use ($type, $bullets) {
-            $query->whereIn($type, $bullets);
-        });
+        return $instance->createBulletsModel()
+            ->whereNamespace($instance->getBulletEntityClassName());
     }
 
     /**
@@ -149,17 +123,15 @@ trait BulletableTrait
     {
         $bullet = $this->createBulletsModel()->firstOrNew([
             'namespace' => $this->getBulletEntityClassName(),
+            'comment' => $comment
         ]);
 
         if (! $bullet->exists) {
-            $bullet->comment = $comment;
-
+            $bullet->sequence = 666;
             $bullet->save();
         }
 
         if (! $this->bullets->contains($bullet->id)) {
-            $bullet->update([ 'count' => $bullet->count + 1 ]);
-
             $this->bullets()->attach($bullet);
         }
     }
@@ -228,6 +200,6 @@ trait BulletableTrait
             return static::$entityNamespace;
         }
 
-        return $this->bullets()->getMorphClass();
+        return $this->getEntityClassName();
     }
 }

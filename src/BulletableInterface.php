@@ -4,7 +4,7 @@
  * Part of the Bullets package.
  *
  * @package    Bullets
- * @version    0.0.8
+ * @version    0.0.10
  * @author     Craig Zearfoss
  * @license    MIT License
  * @copyright  (c) 2011-2016, Craig Zearfoss
@@ -38,26 +38,6 @@ interface BulletableInterface
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function allBullets();
-
-    /**
-     * Returns the entities with only the given bullets.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string|array  $bullets
-     * @param  string  $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public static function scopeWhereBullet(Builder $query, $bullets, $type = 'comment');
-
-    /**
-     * Returns the entities with one of the given bullets.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string|array  $bullets
-     * @param  string  $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public static function scopeWithBullet(Builder $query, $bullets, $type = 'comment');
 
     /**
      * Attaches multiple bullets to the entity.

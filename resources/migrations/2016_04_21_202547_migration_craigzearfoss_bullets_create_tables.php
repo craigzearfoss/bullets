@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Bullets
- * @version    0.0.8
+ * @version    0.0.10
  * @author     Craig Zearfoss
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2016, Craig Zearfpss
@@ -37,6 +37,8 @@ class MigrationCraigzearfossBulletsCreateTables extends Migration
             $table->integer('bulletable_id')->unsigned();
             $table->string('comment');
             $table->integer('sequence')->default(999999)->unsigned();
+            $table->timestamps();
+
 
             $table->engine = 'InnoDB';
         });

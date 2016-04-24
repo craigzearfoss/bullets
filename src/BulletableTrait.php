@@ -4,7 +4,7 @@
  * Part of the Bullets package.
  *
  * @package    Bullets
- * @version    0.0.6
+ * @version    0.0.7
  * @author     Craig Zearfoss
  * @license    MIT License
  * @copyright  (c) 2011-2016, Craig Zearfoss
@@ -18,36 +18,11 @@ use Illuminate\Database\Eloquent\Builder;
 trait BulletableTrait
 {
     /**
-     * The bullets delimiter.
-     *
-     * @var string
-     */
-    protected static $bulletDelimiter = ',';
-
-    /**
      * The Eloquent bullets model name.
      *
      * @var string
      */
     protected static $bulletsModel = 'Craigzearfoss\Bullets\IlluminateBullet';
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getBulletDelimiter()
-    {
-        return static::$bulletDelimiter;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setBulletDelimiter($bulletDelimiter)
-    {
-        static::$bulletDelimiter = $bulletDelimiter;
-
-        return get_called_class();
-    }
 
     /**
      * {@inheritdoc}
@@ -70,7 +45,7 @@ trait BulletableTrait
      */
     public function bullets()
     {
-        return $this->morphToMany(static::$bulletsModel, 'bulletable', 'bulleted', 'bulletable_id', 'bullet_id');
+        return $this->morphToMany(static::$bulletsModel, 'bulletable', 'bulletable_id', 'bullet_id');
     }
 
     /**

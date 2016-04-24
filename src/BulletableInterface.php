@@ -4,7 +4,7 @@
  * Part of the Bullets package.
  *
  * @package    Bullets
- * @version    0.0.6
+ * @version    0.0.7
  * @author     Craig Zearfoss
  * @license    MIT License
  * @copyright  (c) 2011-2016, Craig Zearfoss
@@ -17,28 +17,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 interface BulletableInterface
 {
-    /**
-     * Returns the bullet delimiter.
-     *
-     * @return string
-     */
-    public static function getBulletDelimiter();
-
-    /**
-     * Sets the bullet delimiter.
-     *
-     * @param  string  $bulletDelimiter
-     * @return $this
-     */
-    public static function setBulletDelimiter($bulletDelimiter);
-
-    /**
-     * Returns the Eloquent bullets model comment.
-     *
-     * @return string
-     */
-    public static function getBulletsModel();
-
     /**
      * Sets the Eloquent bullets model comment.
      *

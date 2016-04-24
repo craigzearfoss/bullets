@@ -4,7 +4,7 @@
  * Part of the Bullets package.
  *
  * @package    Bullets
- * @version    0.0.6
+ * @version    0.0.7
  * @author     Craig Zearfoss
  * @license    MIT License
  * @copyright  (c) 2011-2016, Craig Zearfoss
@@ -21,7 +21,7 @@ class IlluminateBullet extends Model
     /**
      * {@inheritdoc}
      */
-    public $timestamps = false;
+    public $timestamps = true;
 
     /**
      * {@inheritdoc}
@@ -33,28 +33,9 @@ class IlluminateBullet extends Model
      */
     protected $fillable = [
         'comment',
-        'count',
+        'sequence',
         'namespace',
     ];
-
-    /**
-     * The bulleted entities model.
-     *
-     * @var string
-     */
-    protected static $bulletedModel = 'Craigzearfoss\Bullets\IlluminateBulleted';
-
-    /**
-     * {@inheritdoc}
-     */
-    public function delete()
-    {
-        if ($this->exists) {
-            $this->bulleted()->delete();
-        }
-
-        return parent::delete();
-    }
 
     /**
      * Returns the polymorphic relationship.
@@ -67,16 +48,6 @@ class IlluminateBullet extends Model
     }
 
     /**
-     * Returns this bullet bulleted entities.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function bulleted()
-    {
-        return $this->hasMany(static::$bulletedModel, 'bullet_id');
-    }
-
-    /**
      * Finds a bullet by its comment.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -86,26 +57,5 @@ class IlluminateBullet extends Model
     public function scopeComment(Builder $query, $comment)
     {
         return $query->whereName($comment);
-    }
-
-    /**
-     * Returns the bulleted entities model.
-     *
-     * @return string
-     */
-    public static function getBulletedModel()
-    {
-        return static::$bulletedModel;
-    }
-
-    /**
-     * Sets the bulleted entities model.
-     *
-     * @param  string  $bulletedModel
-     * @return void
-     */
-    public static function setBulletedModel($bulletedModel)
-    {
-        static::$bulletedModel = $bulletedModel;
     }
 }

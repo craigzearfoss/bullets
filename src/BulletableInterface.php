@@ -4,7 +4,7 @@
  * Part of the Bullets package.
  *
  * @package    Bullets
- * @version    0.0.10
+ * @version    0.0.11
  * @author     Craig Zearfoss
  * @license    MIT License
  * @copyright  (c) 2011-2016, Craig Zearfoss
@@ -48,15 +48,6 @@ interface BulletableInterface
     public function bullet($bullets);
 
     /**
-     * Detaches multiple bullets from the entity or if no bullets are
-     * passed, removes all the attached bullets from the entity.
-     *
-     * @param  string|array|null  $bullets
-     * @return bool
-     */
-    public function unbullet($bullets = null);
-
-    /**
      * Attaches or detaches the given bullets.
      *
      * @param  string|array  $bullets
@@ -82,17 +73,15 @@ interface BulletableInterface
     public function removeBullet($comment);
 
     /**
-     * Prepares the given bullets before being saved.
-     *
-     * @param  string|array  $bullets
-     * @return array
-     */
-    public function prepareBullets($bullets);
-
-    /**
      * Creates a new model instance.
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public static function createBulletsModel();
+
+    /**
+     * @param array $newBullets
+     * @return bool
+     */
+    public function syncBullets($newBullets = []);
 }

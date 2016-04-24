@@ -4,7 +4,7 @@
  * Part of the Bullets package.
  *
  * @package    Bullets
- * @version    0.0.10
+ * @version    0.0.11
  * @author     Craig Zearfoss
  * @license    MIT License
  * @copyright  (c) 2011-2016, Craig Zearfoss
@@ -32,9 +32,10 @@ class IlluminateBullet extends Model
      * {@inheritdoc}
      */
     protected $fillable = [
-        'comment',
-        'sequence',
         'namespace',
+        'bulletable_id',
+        'comment',
+        'sequence'
     ];
 
     /**

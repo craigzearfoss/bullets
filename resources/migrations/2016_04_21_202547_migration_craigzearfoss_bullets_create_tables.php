@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Bullets
- * @version    0.0.10
+ * @version    0.0.11
  * @author     Craig Zearfoss
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2016, Craig Zearfpss

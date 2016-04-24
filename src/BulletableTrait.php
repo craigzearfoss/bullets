@@ -4,7 +4,7 @@
  * Part of the Bullets package.
  *
  * @package    Bullets
- * @version    0.0.10
+ * @version    0.0.11
  * @author     Craig Zearfoss
  * @license    MIT License
  * @copyright  (c) 2011-2016, Craig Zearfoss
@@ -65,52 +65,27 @@ trait BulletableTrait
     /**
      * {@inheritdoc}
      */
-    public function bullet($bullets)
-    {
-        foreach ($this->prepareBullets($bullets) as $bullet) {
-            $this->addBullet($bullet);
-        }
-
-        return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function unbullet($bullets = null)
-    {
-        $bullets = $bullets ?: $this->bullets->lists('name')->all();
-
-        foreach ($this->prepareBullets($bullets) as $bullet) {
-            $this->removeBullet($bullet);
-        }
-
-        return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setBullets($bullets, $type = 'comment')
     {
-        // Prepare the bullets
-        $bullets = $this->prepareBullets($bullets);
-
         // Get the current entity bullets
         $entityBullets = $this->bullets->lists($type)->all();
 
         // Prepare the bullets to be added and removed
         $bulletsToAdd = array_diff($bullets, $entityBullets);
-        $bulletsToDel = array_diff($entityBullets, $bullets);
+        $bulletsToDelete = array_diff($entityBullets, $bullets);
 
-        // Detach the bullets
-        if (! empty($bulletsToDel)) {
-            $this->unbullet($bulletsToDel);
+        // Delete the bullets
+        if (!empty($bulletsToDelete)) {
+            foreach($bulletsToDelete as $comment) {
+                $this->deleteBullet($comment);
+            }
         }
 
-        // Attach the bullets
-        if (! empty($bulletsToAdd)) {
-            $this->bullet($bulletsToAdd);
+        // Add the bullets
+        if (!empty($bulletsToAdd)) {
+            foreach ($bulletsToAdd as $comment) {
+                $this->addBullet($comment);
+            }
         }
 
         return true;
@@ -123,16 +98,24 @@ trait BulletableTrait
     {
         $bullet = $this->createBulletsModel()->firstOrNew([
             'namespace' => $this->getBulletEntityClassName(),
+            'bulletable_id' => $this->id,
             'comment' => $comment
         ]);
 
         if (! $bullet->exists) {
-            $bullet->sequence = 666;
-            $bullet->save();
-        }
 
-        if (! $this->bullets->contains($bullet->id)) {
-            $this->bullets()->attach($bullet);
+            // increment sequence
+            $maxSequence = $this->createBulletsModel()
+                ->whereNamespace($this->getBulletEntityClassName())
+                ->where(function ($query) {
+                    $query
+                        ->Where('bulletable_id', $this->id)
+                    ;
+                })
+                ->max('sequence');
+            $bullet->sequence = $maxSequence + 1;
+
+            $bullet->save();
         }
     }
 
@@ -164,26 +147,6 @@ trait BulletableTrait
     /**
      * {@inheritdoc}
      */
-    public function prepareBullets($bullets)
-    {
-        if (is_null($bullets)) {
-            return [];
-        }
-
-        if (is_string($bullets)) {
-            $bulletDelimiter = preg_quote($this->getBulletDelimiter(), '#');
-
-            $bullets = array_map('trim',
-                preg_split("#[{$bulletDelimiter}]#", $bullets, null, PREG_SPLIT_NO_EMPTY)
-            );
-        }
-
-        return array_unique(array_filter($bullets));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public static function createBulletsModel()
     {
         return new static::$bulletsModel;
@@ -201,5 +164,48 @@ trait BulletableTrait
         }
 
         return $this->getEntityClassName();
+    }
+
+    /**
+     * @param array $newBullets
+     * @return bool
+     */
+    public function syncBullets($newBullets = [])
+    {
+        // determine if any bullets should be deleted
+        $currentBullets = $this->bullets()->lists('comment', 'id')->toArray();
+        $bulletsToDelete = array_udiff($currentBullets, $newBullets, 'strcasecmp');
+        $newBullets = array_udiff($newBullets, $currentBullets, 'strcasecmp');
+
+        // add the new bullets
+        foreach ($newBullets as $comment) {
+            $this->addBullet($comment);
+        }
+
+        // delete old bullets
+        foreach ($bulletsToDelete as $comment) {
+            $this->deleteBullet($comment);
+        }
+
+        return true;
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deleteBullet($comment)
+    {
+        $bullet = $this->createBulletsModel()->firstOrNew([
+            'namespace' => $this->getBulletEntityClassName(),
+            'bulletable_id' => $this->id,
+            'comment' => $comment
+        ]);
+
+        if ($bullet->exists) {
+            $bullet->delete();
+        }
+
+        return true;
     }
 }

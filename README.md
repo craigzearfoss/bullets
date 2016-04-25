@@ -2,13 +2,31 @@
 
 ---
 
+## Installation
+
+* Add the repositry to your composer.json file in the require section.
+    > "require": {
+    >     "craigzearfoss/bullets": "dev-master",
+    > },
+
+* Run composer install.
+    > composer install -o
+
+* Add the BulletsServiceProvider to app/config.php in the providers section.
+    >   Craigzearfoss\Bullets\BulletsServiceProvider::class,
+
+
+---
+
+# Usage
+
 * In your model add the BulletableTrait.
     > ...
     > use Craigzearfoss\Bullets\BulletableTrait;
     >
     > class MyModel extends Model
     > {
-    >    use BulletableTrait;
+    >     use BulletableTrait;
     > ...
 
 * To get the bullets in the controller:
@@ -25,9 +43,9 @@
 
 * To display them in a blade template:
     > @if (!empty($bullets))
-    >   <ul>
-    >       @foreach($bullets as $bullet)
-    >           <li>{{ $bullet->comment }}</li>
-    >       @endforeach
-    >   </ul>
+    >     <ul>
+    >         @foreach($bullets as $bullet)
+    >             <li>{{ $bullet->comment }}</li>
+    >         @endforeach
+    >     </ul>
     > @endif

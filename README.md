@@ -43,7 +43,7 @@
     $myModel->syncBullets(isset($data['bullet_list']) ? $data['bullet_list'] : []);
     ```
 
-* In the forms blade templates:
+* To add the bullets to you forms blade templates:
 
     1. Add the form select element.
         ```html
@@ -70,8 +70,7 @@
         </script>
         ```
 
-
-* To display them in a blade template:
+* To display the bullet in a blade template:
     ```html
     @if (!empty($bullets))
         <ul>

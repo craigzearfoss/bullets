@@ -12,7 +12,7 @@
     ```
 
 * Run composer install.
-    > composer install -o
+    `composer install -o`
 
 * Add the BulletsServiceProvider to app/config.php in the providers section.
     ```php

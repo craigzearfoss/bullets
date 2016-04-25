@@ -44,12 +44,32 @@
     ```
 
 * In the forms blade templates:
-    ```html
-    <div class="form-group">
-       {!! Form::label('bullet_list', 'Bullet Points:') !!}
-       {!! Form::select('bullet_list[]', $myModel->bullets()->lists('comment', 'comment')->toArray(), array_keys($myModel->bullets()->lists('comment', 'comment')->toArray()), ['id' => 'bullet_list', 'class' => 'form-control bullet_list', 'multiple']) !!}
-    </div>
-    ```
+
+    1. Add the form select element.
+        ```html
+        <div class="form-group">
+            {!! Form::label('bullet_list', 'Bullet Points:') !!}
+           {!! Form::select('bullet_list[]', $myModel->bullets()->lists('comment', 'comment')->toArray(), array_keys($myModel->bullets()->lists('comment', 'comment')->toArray()), ['id' => 'bullet_list', 'class' => 'form-control bullet_list', 'multiple']) !!}
+        </div>
+       ```
+       
+    2. Add select.js from https://select2.github.io/
+        ```html
+        <script type="text/javascript" src="js/select2.min.js"></script>
+        ```
+        
+    3. Add the following JavaScript to the page.
+        ```javascript
+        <script type="text/javascript">
+            $("#bullet_list").select2({
+                placeholder: "Add Bullet Points",
+                tags: true,
+                tokenSeparators: ["\n"],
+                maximumSelectionLength: 255
+            });
+        </script>
+        ```
+
 
 * To display them in a blade template:
     ```html

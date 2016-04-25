@@ -5,15 +5,19 @@
 ## Installation
 
 * Add the repositry to your composer.json file in the require section.
-    > "require": {
-    >     "craigzearfoss/bullets": "dev-master"
-    > },
+    ```javascript
+    "require": {
+        "craigzearfoss/bullets": "dev-master"
+    },
+    ```
 
 * Run composer install.
     > composer install -o
 
 * Add the BulletsServiceProvider to app/config.php in the providers section.
-    >   Craigzearfoss\Bullets\BulletsServiceProvider::class,
+    ```php
+    Craigzearfoss\Bullets\BulletsServiceProvider::class,
+    ```
 
 
 ---
@@ -30,7 +34,9 @@
     ```
 
 * To get the bullets in the controller:
-    > $bullets = $myModel->bullets()->get();
+    ```php
+    $bullets = $myModel->bullets()->get();
+    ```
 
 * To sync the bullets when storing or updating:
     ```php

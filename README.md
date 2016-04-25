@@ -6,7 +6,7 @@
 
 * Add the repositry to your composer.json file in the require section.
     > "require": {
-    >     "craigzearfoss/bullets": "dev-master",
+    >     "craigzearfoss/bullets": "dev-master"
     > },
 
 * Run composer install.
@@ -36,10 +36,12 @@
     > $myModel->syncBullets(isset($data['bullet_list']) ? $data['bullet_list'] : []);
 
 * In the forms blade templates:
-    > <div class="form-group">
-    >    {!! Form::label('bullet_list', 'Bullet Points:') !!}
-    >   {!! Form::select('bullet_list[]', $myModel->bullets()->lists('comment', 'comment')->toArray(), array_keys($myModel->bullets()->lists('comment', 'comment')->toArray()), ['id' => 'bullet_list', 'class' => 'form-control bullet_list', 'multiple']) !!}
-    > </div>
+    ```html
+    <div class="form-group">
+       {!! Form::label('bullet_list', 'Bullet Points:') !!}
+       {!! Form::select('bullet_list[]', $myModel->bullets()->lists('comment', 'comment')->toArray(), array_keys($myModel->bullets()->lists('comment', 'comment')->toArray()), ['id' => 'bullet_list', 'class' => 'form-control bullet_list', 'multiple']) !!}
+    </div>
+    ```
 
 * To display them in a blade template:
     > @if (!empty($bullets))

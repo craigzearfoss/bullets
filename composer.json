@@ -1,6 +1,6 @@
 {
     "name": "craigzearfoss/bullets",
-    "description": "Add bullet points to a model of Laravel 5.1 Eloquent models.",
+    "description": "Add bullet points to Laravel 5.1 Eloquent models.",
     "keywords": [
         "php",
         "craigzearfoss",

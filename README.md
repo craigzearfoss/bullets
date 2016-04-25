@@ -4,7 +4,7 @@
 
 ## Installation
 
-* Add the repositry to your composer.json file in the require section.
+* Add the repository to your composer.json file in the require section.
     ```javascript
     "require": {
         "craigzearfoss/bullets": "dev-master"

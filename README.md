@@ -49,7 +49,7 @@
         ```html
         <div class="form-group">
             {!! Form::label('bullet_list', 'Bullet Points:') !!}
-           {!! Form::select('bullet_list[]', $myModel->bullets()->lists('comment', 'comment')->toArray(), array_keys($myModel->bullets()->lists('comment', 'comment')->toArray()), ['id' => 'bullet_list', 'class' => 'form-control bullet_list', 'multiple']) !!}
+           {!! Form::select('bullet_list[]', $myModel->bullets()->lists('comment', 'comment')->toArray(), array_keys($myModel->bullets()->lists('comment', 'comment')->toArray()), ['id' => 'bullet_list', 'class' => 'form-control select2-bullet-list', 'multiple']) !!}
         </div>
        ```
        
@@ -58,7 +58,14 @@
         <script type="text/javascript" src="js/select2.min.js"></script>
         ```
         
-    3. Add the following JavaScript to the page.
+    3. Add the following to your css for the form element. This makes the bullet select list items width 100%.
+        ```css
+        .select2-bullet-list + .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            width: 100%;
+        }
+        ```
+    
+    4. Add the following JavaScript to the page.
         ```javascript
         <script type="text/javascript">
             $("#bullet_list").select2({

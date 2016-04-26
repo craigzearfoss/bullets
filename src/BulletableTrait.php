@@ -174,8 +174,8 @@ trait BulletableTrait
     {
         // determine if any bullets should be deleted
         $currentBullets = $this->bullets()->lists('comment', 'id')->toArray();
-        $bulletsToDelete = array_udiff($currentBullets, $newBullets, 'strcasecmp');
-        $newBullets = array_udiff($newBullets, $currentBullets, 'strcasecmp');
+        $bulletsToDelete = array_udiff($currentBullets, $newBullets, 'strcmp');
+        $newBullets = array_udiff($newBullets, $currentBullets, 'strcmp');
 
         // add the new bullets
         foreach ($newBullets as $comment) {

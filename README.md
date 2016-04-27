@@ -4,8 +4,8 @@ Bullets for Laravel 5
 This package allows you to attach bullet points to an Eloquent model in [**Laravel 5**](http://laravel.com/).
 
 
-Installation
-------------
+Composer Install
+----------------
 
 It can be found on [Packagist](https://packagist.org/packages/craigzeaross/bullets).
 The recommended way is through [composer](http://getcomposer.org).
@@ -25,7 +25,6 @@ And install dependencies:
 $ composer update
 ```
 
-
 If you do not have [**Composer**](https://getcomposer.org) installed, run these two commands:
 
 ```bash
@@ -33,10 +32,7 @@ $ curl -sS https://getcomposer.org/installer | php
 $ php composer.phar install
 ```
 
-
-Usage
------
-
+Install and then Run the migrations
 Find the `providers` array key in `config/app.php` and register the **Bullets Service Provider**.
 
 ```php
@@ -46,6 +42,13 @@ Find the `providers` array key in `config/app.php` and register the **Bullets Se
     Craigzearfoss\Bullets\BulletsServiceProvider::class,
 )
 ```
+
+Run the migration to create the `bullets` table.
+```bash
+php artisan vendor:publish --provider="Craigzearfoss\Bullets\Providers\BulletsServiceProvider"
+php artisan migrate
+```
+
 
 Configuration
 -------------
@@ -62,6 +65,10 @@ class MyModel extends Model
 {
     use BulletableTrait;
 ```
+
+
+Usage
+-----
 
 To fetch the bullets for your model:
 ```php

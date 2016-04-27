@@ -63,60 +63,60 @@ class MyModel extends Model
     use BulletableTrait;
 ```
 
-* To get the bullets in the controller:
-    ```php
-    $bullets = $myModel->bullets()->get();
-    ```
+To fetch the bullets for your model:
+```php
+$bullets = $myModel->bullets()->get();
+```
 
-* To sync the bullets when storing or updating:
-    ```php
-    $myModel->syncBullets(isset($data['bullet_list']) ? $data['bullet_list'] : []);
-    ```
+To sync the bullets for your model when storing or updating:
+```php
+$myModel->syncBullets(isset($data['bullet_list']) ? $data['bullet_list'] : []);
+```
 
-* To add the bullets to you forms blade templates:
+To add the bullets for your model to you forms blade templates:
 
-    1. Add the form select element.
-        ```html
-        <div class="form-group">
-            {!! Form::label('bullet_list', 'Bullet Points:') !!}
-           {!! Form::select('bullet_list[]', $myModel->bullets()->lists('comment', 'comment')->toArray(), array_keys($myModel->bullets()->lists('comment', 'comment')->toArray()), ['id' => 'bullet_list', 'class' => 'form-control select2-bullet-list', 'multiple']) !!}
-        </div>
-       ```
+1. Add the form select element.
+```html
+<div class="form-group">
+    {!! Form::label('bullet_list', 'Bullet Points:') !!}
+   {!! Form::select('bullet_list[]', $myModel->bullets()->lists('comment', 'comment')->toArray(), array_keys($myModel->bullets()->lists('comment', 'comment')->toArray()), ['id' => 'bullet_list', 'class' => 'form-control select2-bullet-list', 'multiple']) !!}
+</div>
+```
        
-    2. Add select.js from https://select2.github.io/
-        ```html
-        <script type="text/javascript" src="js/select2.min.js"></script>
-        ```
+2. Add [select.js](https://select2.github.io/) to your layout.
+```html
+<script type="text/javascript" src="js/select2.min.js"></script>
+```
         
-    3. Add the following to your css for the form element. This makes the bullet select list items width 100%.
-        ```css
-        .select2-bullet-list + .select2-container--default .select2-selection--multiple .select2-selection__choice {
-            width: 100%;
-        }
+3. Add the following to your css for the form element. This makes the bullet select list items have a width of 100%.
+```css
+.select2-bullet-list + .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    width: 100%;
+}
         ```
     
-    4. Add the following JavaScript to the page.
-        ```javascript
-        <script type="text/javascript">
-            $("#bullet_list").select2({
-                placeholder: "Add Bullet Points",
-                tags: true,
-                tokenSeparators: ["\n"],
-                maximumSelectionLength: 255
-            });
-        </script>
-        ```
+4. Add the following JavaScript to the form page.
+```javascript
+<script type="text/javascript">
+    $("#bullet_list").select2({
+        placeholder: "Add Bullet Points",
+        tags: true,
+        tokenSeparators: ["\n"],
+        maximumSelectionLength: 255
+    });
+</script>
+```
 
-* To display the bullet in a blade template:
-    ```html
-    @if (!empty($bullets))
-        <ul>
-            @foreach($bullets as $bullet)
-                <li>{{ $bullet->comment }}</li>
-            @endforeach
-        </ul>
-    @endif
-    ```
+* To display the bullets for your model in a blade template:
+```html
+@if (!empty($bullets))
+    <ul>
+        @foreach($bullets as $bullet)
+            <li>{{ $bullet->comment }}</li>
+        @endforeach
+    </ul>
+@endif
+```
 
 
 Changelog

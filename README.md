@@ -151,6 +151,6 @@ By participating in this project you agree to abide by its terms.
 License
 -------
 
-GeocoderLaravel is released under the MIT License. See the bundled
+Bullets is released under the MIT License. See the bundled
 [LICENSE](https://github.com/craigzearfoss/bullets/blob/master/LICENSE)
 file for details.

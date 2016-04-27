@@ -113,3 +113,30 @@ Configuration
         </ul>
     @endif
     ```
+
+
+Changelog
+---------
+
+[See the CHANGELOG file](https://github.com/craigzearfoss/bullets/blob/master/CHANGELOG.md)
+
+
+Support
+-------
+
+[Please open an issue on GitHub](https://github.com/craigzearfoss/bullets/issues)
+
+
+Contributor Code of Conduct
+---------------------------
+
+Please note that this project is released with a Contributor Code of Conduct.
+By participating in this project you agree to abide by its terms.
+
+
+License
+-------
+
+GeocoderLaravel is released under the MIT License. See the bundled
+[LICENSE](https://github.com/craigzearfoss/bullets/blob/master/LICENSE)
+file for details.

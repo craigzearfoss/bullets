@@ -1,28 +1,54 @@
-# bullets
+Bullets for Laravel 5
+=====================
 
----
+This package allows you to attach bullet points to an Eloquent model in [**Laravel 5**](http://laravel.com/).
 
-## Installation
 
-* Add the repository to your composer.json file in the require section.
-    ```javascript
+Installation
+------------
+
+It can be found on [Packagist](https://packagist.org/packages/craigzeaross/bullets).
+The recommended way is through [composer](http://getcomposer.org).
+
+Edit `composer.json` and add:
+
+```json
+{
     "require": {
         "craigzearfoss/bullets": "dev-master"
-    },
-    ```
+    }
+}
+```
 
-* Run composer install.
-    > `composer install -o`
+And install dependencies:
+```bash
+$ composer update
+```
 
-* Add the BulletsServiceProvider to app/config.php in the providers section.
-    ```php
+
+If you do not have [**Composer**](https://getcomposer.org) installed, run these two commands:
+
+```bash
+$ curl -sS https://getcomposer.org/installer | php
+$ php composer.phar install
+```
+
+
+Usage
+-----
+
+Find the `providers` array key in `config/app.php` and register the **Geocoder Service Provider**.
+
+```php
+'providers' => array(
+    // ...
+
     Craigzearfoss\Bullets\BulletsServiceProvider::class,
-    ```
+)
+```
 
-
----
-
-# Usage
+Configuration
+-------------
 
 * In your model add the BulletableTrait.
     ```php

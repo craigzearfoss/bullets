@@ -37,7 +37,7 @@ $ php composer.phar install
 Usage
 -----
 
-Find the `providers` array key in `config/app.php` and register the **Geocoder Service Provider**.
+Find the `providers` array key in `config/app.php` and register the **Bullets Service Provider**.
 
 ```php
 'providers' => array(

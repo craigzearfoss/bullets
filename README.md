@@ -32,7 +32,10 @@ $ curl -sS https://getcomposer.org/installer | php
 $ php composer.phar install
 ```
 
+
 Install and then Run the migrations
+-----------------------------------
+
 Find the `providers` array key in `config/app.php` and register the **Bullets Service Provider**.
 
 ```php

@@ -50,14 +50,18 @@ Find the `providers` array key in `config/app.php` and register the **Bullets Se
 Configuration
 -------------
 
-* In your model add the BulletableTrait.
-    ```php
-    use Craigzearfoss\Bullets\BulletableTrait;
-    
-    class MyModel extends Model
-    {
-        use BulletableTrait;
-    ```
+In your model add the BulletableTrait.
+
+```php
+<?php
+
+// ...
+use Craigzearfoss\Bullets\BulletableTrait;
+
+class MyModel extends Model
+{
+    use BulletableTrait;
+```
 
 * To get the bullets in the controller:
     ```php
